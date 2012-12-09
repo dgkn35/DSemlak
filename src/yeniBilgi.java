@@ -1,8 +1,15 @@
+import java.util.ArrayList;
+
 
 public class yeniBilgi {
 	private String il, ilce, yapi_tipi, yapi_durum, kullanim_durumu, aciklama;
 	private String uygun, satildi, balkon, bahce;
 	private float ilanno, fiyat, alan, yil, kat, oda_sayisi, banyo, bina_kat;
+	public ArrayList<String> icdonanim;
+	
+	public yeniBilgi(){// Constructor
+		icdonanim = new ArrayList<String>();
+	}
 	
 	public String getIl() {
 		return il;
