@@ -1,14 +1,13 @@
 
 public class eskiBilgiler {
-	private float kira, fiyat, alan;
-	private int yil;
-	private String il, ilce;
+	private float fiyat, alan;
+	private String il, ilce, kira,yil;
 	
-	public float getKira() {
+	public String getKira() {
 		return kira;
 	}
-	public void setKira(float kira) {
-		this.kira = kira;
+	public void setKira(String adres) {
+		this.kira = adres;
 	}
 	public float getFiyat() {
 		return fiyat;
@@ -22,10 +21,10 @@ public class eskiBilgiler {
 	public void setAlan(float alan) {
 		this.alan = alan;
 	}
-	public int getYil() {
+	public String getYil() {
 		return yil;
 	}
-	public void setYil(int yil) {
+	public void setYil(String yil) {
 		this.yil = yil;
 	}
 	public String getIl() {

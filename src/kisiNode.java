@@ -2,7 +2,7 @@ import java.util.ArrayList;
 
 
 public class kisiNode {
-	private String ad, adres, e_posta, uyruk, dogum_yeri, medeni_durum, cinsiyet, tarih;
+	private String ad, adres, e_posta, uyruk, dogum_yeri, medeni_durum, cinsiyet, tarih,telefon;
 	private String ogrenci;
 	public kisiNode rightchild;
 	public kisiNode leftchild;
@@ -86,6 +86,14 @@ public class kisiNode {
 
 	public void setOgrenci(String ogrenci) {
 		this.ogrenci = ogrenci;
+	}
+
+	public String getTelefon() {
+		return telefon;
+	}
+
+	public void setTelefon(String tmp) {
+		this.telefon = tmp;
 	}
 
 	
