@@ -9,13 +9,13 @@ public class tree {
 		root=null;
 	}
 	
-	public kisiNode find(kisiNode bir_node)//Arama
+	public kisiNode find(String isim)//Arama
 	{
 		kisiNode current=root;
-		while(current.getAd()!=bir_node.getAd())
+		while(current.getAd()!=isim)
 		{
 			
-			if(bir_node.getAd().compareTo(current.getAd())<0)
+			if(isim.compareTo(current.getAd())<0)
 				current=current.leftchild;
 	
 			else
@@ -68,96 +68,96 @@ public class tree {
 	
 	public boolean sil(String isim){
 		kisiNode current = root;
-	      kisiNode parent = root;
-	      boolean isLeftChild = true;
+		kisiNode parent = root;
+		boolean isLeftChild = true;
 
-	      while(current.getAd().compareTo(isim) !=0 )        // search for node
-	         {
-	         parent = current;
-	         if(current.getAd().compareTo(isim)>0)         // go left?
-	            {
-	            isLeftChild = true;
-	            current = current.leftchild;
-	            }
-	         else                            // or go right?
-	            {
-	            isLeftChild = false;
-	            current = current.rightchild;
-	            }
-	         if(current == null)             // end of the line,
-	            return false;                // didn't find it
-	         }  // end while
-	      // found node to delete
+		while(current.getAd().compareTo(isim) !=0 )        // search for node
+		{
+			parent = current;
+			if(current.getAd().compareTo(isim)>0)         // go left?
+			{
+				isLeftChild = true;
+				current = current.leftchild;
+			}
+			else                            // or go right?
+			{
+				isLeftChild = false;
+				current = current.rightchild;
+			}
+			if(current == null)             // end of the line,
+				return false;                // didn't find it
+		}  // end while
+		// found node to delete
 
-	      // if no children, simply delete it
-	      if(current.leftchild==null && current.rightchild==null)
-	         {
-	         if(current == root)             // if root,
-	            root = null;                 // tree is empty
-	         else if(isLeftChild)
-	            parent.leftchild = null;     // disconnect
-	         else                            // from parent
-	            parent.rightchild = null;
-	         }
+		// if no children, simply delete it
+		if(current.leftchild==null && current.rightchild==null)
+		{
+			if(current == root)             // if root,
+				root = null;                 // tree is empty
+			else if(isLeftChild)
+				parent.leftchild = null;     // disconnect
+			else                            // from parent
+				parent.rightchild = null;
+		}
 
-	      // if no right child, replace with left subtree
-	      else if(current.rightchild==null)
-	         if(current == root)
-	            root = current.leftchild;
-	         else if(isLeftChild)
-	            parent.leftchild = current.leftchild;
-	         else
-	            parent.rightchild = current.leftchild;
+		// if no right child, replace with left subtree
+		else if(current.rightchild==null)
+			if(current == root)
+				root = current.leftchild;
+			else if(isLeftChild)
+				parent.leftchild = current.leftchild;
+			else
+				parent.rightchild = current.leftchild;
 
-	      // if no left child, replace with right subtree
-	      else if(current.leftchild==null)
-	         if(current == root)
-	            root = current.rightchild;
-	         else if(isLeftChild)
-	            parent.leftchild = current.rightchild;
-	         else
-	            parent.rightchild = current.rightchild;
+		// if no left child, replace with right subtree
+		else if(current.leftchild==null)
+			if(current == root)
+				root = current.rightchild;
+			else if(isLeftChild)
+				parent.leftchild = current.rightchild;
+			else
+				parent.rightchild = current.rightchild;
 
-	      else  // two children, so replace with inorder successor
-	         {
-	         // get successor of node to delete (current)
-	         kisiNode successor = getSuccessor(current);
+		else  // two children, so replace with inorder successor
+		{
+			// get successor of node to delete (current)
+			kisiNode successor = getSuccessor(current);
 
-	         // connect parent of current to successor instead
-	         if(current == root)
-	            root = successor;
-	         else if(isLeftChild)
-	            parent.leftchild = successor;
-	         else
-	            parent.rightchild = successor;
+			// connect parent of current to successor instead
+			if(current == root)
+				root = successor;
+			else if(isLeftChild)
+				parent.leftchild = successor;
+			else
+				parent.rightchild = successor;
 
-	         // connect successor to current's left child
-	         successor.leftchild = current.leftchild;
-	         }  // end else two children
-	      // (successor cannot have a left child)
-	      return true;                                // success
-	      }  // end delete()
-	
+			// connect successor to current's left child
+			successor.leftchild = current.leftchild;
+		}  // end else two children
+		// (successor cannot have a left child)
+		return true;                                // success
+	}  // end delete()
+
 	private kisiNode getSuccessor(kisiNode delNode)
-    {
-    kisiNode successorParent = delNode;
-    kisiNode successor = delNode;
-    kisiNode current = delNode.rightchild;   // go to right child
-    while(current != null)               // until no more
-       {                                 // left children,
-       successorParent = successor;
-       successor = current;
-       current = current.leftchild;      // go to left child
-       }
-                                         // if successor not
-    if(successor != delNode.rightchild)  // right child,
-       {                                 // make connections
-       successorParent.leftchild = successor.rightchild;
-       successor.rightchild = delNode.rightchild;
-       }
-    return successor;
-    }
-	
+	{
+		kisiNode successorParent = delNode;
+		kisiNode successor = delNode;
+		kisiNode current = delNode.rightchild;   // go to right child
+		while(current != null)               // until no more
+		{                                 // left children,
+			successorParent = successor;
+			successor = current;
+			current = current.leftchild;      // go to left child
+		}
+		// if successor not
+		if(successor != delNode.rightchild)  // right child,
+		{                                 // make connections
+			successorParent.leftchild = successor.rightchild;
+			successor.rightchild = delNode.rightchild;
+		}
+		return successor;
+	}
+
 	public void preOrder(kisiNode localRoot)
 	{
 		if(localRoot!=null)
@@ -168,7 +168,7 @@ public class tree {
 			bulmaca();
 		}
 	}
-	
+
 	public void inOrder(kisiNode localRoot)
 	{
 		if(localRoot!=null)
@@ -179,7 +179,7 @@ public class tree {
 			bulmaca();
 		}
 	}
-	
+
 	public void postOrder(kisiNode localRoot)
 	{
 		if(localRoot!=null)
@@ -190,7 +190,7 @@ public class tree {
 			bulmaca();
 		}
 	}
-	
+
 	public void agacBilgiTopla(kisiNode etkin)
 	{
 		if(etkin!=null)
@@ -205,7 +205,7 @@ public class tree {
 			duzey--;
 		}
 	}
-	
+
 	public void bulmaca()
 	{
 		duzey=-1;

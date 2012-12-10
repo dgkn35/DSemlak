@@ -7,13 +7,13 @@ public class kisiNode {
 	public kisiNode rightchild;
 	public kisiNode leftchild;
 	public ArrayList<eskiBilgiler> eskiBilgiler;
-	public ArrayList<Integer> satinAlinanlar;
+	public ArrayList<Float> satinAlinanlar;
 	public ArrayList<icDonanim> donanim;
 	
 	public kisiNode()
 	{
 		eskiBilgiler = new ArrayList<eskiBilgiler>();
-		satinAlinanlar = new ArrayList<Integer>();
+		satinAlinanlar = new ArrayList<Float>();
 	}
 
 	public String getAd() {

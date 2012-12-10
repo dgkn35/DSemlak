@@ -1,7 +1,8 @@
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.util.ArrayList;
-import java.util.PriorityQueue;
+import java.util.Hashtable;
+import java.util.Scanner;
 
 
 public class Emlak {
@@ -9,31 +10,173 @@ public class Emlak {
 
 	public static void main(String[] args) {
 		tree kisiAgaci = new tree();
+		Heap heap = new Heap();
+		Hashtable<Float, yeniBilgi> hashing = new Hashtable<>();
+		
+		init(kisiAgaci, heap, hashing);
 
-
-
+		
+	}
+	
+	public static void hashingDolas(Hashtable<String,yeniBilgi> hashing)//ilan no
+	{
+		
+	}
+	
+	public static void yatirim(tree agac, Heap heap)
+	{
+		kisiNode birKisi;
+		Scanner scan = new Scanner(System.in);
+		System.out.println("Yatirim yapacak kisinin adini giriniz:");
+		String isim=scan.next();
+		System.out.println("Yatirim icin alinacak ev sayisi:");
+		int n=scan.nextInt();
+		birKisi=agac.find(isim);
+		for (int i = 0; i < n; i++) {
+			birKisi.satinAlinanlar.add(heap.sil().getIlanno());
+		}
+		scan.close();
 	}
 
-	public static void kayit(){
-
+	public static void kisiKayit(tree kisiAgaci){
+		kisiNode birKisi = new kisiNode();
+		Scanner scan = new Scanner(System.in);
+		System.out.println("Isim:");
+		String ad=scan.next();
+		System.out.println("Adres:");
+		String adres=scan.next();
+		System.out.println("Tel:");
+		String tel=scan.next();
+		System.out.println("E-posta:");
+		String eposta=scan.next();
+		System.out.println("Uyruk:");
+		String uyruk=scan.next();
+		System.out.println("Dogum yeri:");
+		String yer=scan.next();
+		System.out.println("Dogum tarihi:");
+		String tarih=scan.next();
+		System.out.println("Medeni durumu:");
+		String medeni=scan.next();
+		System.out.println("Cinsiyet(e/k):");
+		String cinsiyet=scan.next();
+		System.out.println("Ogrenci(e/h):");
+		String ogrenci=scan.next();
+		System.out.println("Bilgiler:");
+		//TODO while koy
+		System.out.println("Satin alinanlar:");
+		//TODO while koy
+		
+		birKisi.setAd(ad);
+		birKisi.setAdres(adres);
+		birKisi.setCinsiyet(cinsiyet);
+		birKisi.setDogum_yeri(yer);
+		birKisi.setE_posta(eposta);
+		birKisi.setMedeni_durum(medeni);
+		birKisi.setOgrenci(ogrenci);
+		birKisi.setTarih(tarih);
+		birKisi.setTelefon(tel);
+		birKisi.setUyruk(uyruk);
+		
+		kisiAgaci.ekle(birKisi);
+		
+		scan.close();
+				
+	}
+	
+	public static void sil(tree agac)
+	{
+		Scanner scan = new Scanner(System.in);
+		System.out.println("Silmek istediginiz kisinin adini giriniz:");
+		String isim=scan.next();
+		if(isim!=null)
+		{
+			boolean flag=agac.sil(isim);
+			if(flag)
+				System.out.println("Kisi basariyla silindi !!!!1111!!!!");
+			else
+				System.out.println("Boyle bir kisi bulunmamaktadir !!!!1111!!!!");
+		}
+		scan.close();
+	}
+	
+	public static void guncelle(tree agac)
+	{
+		kisiNode birKisi;
+		Scanner scan = new Scanner(System.in);
+		System.out.println("Guncellemek istediginiz kisinin ismini giriniz:");
+		String isim=scan.next();
+		birKisi=agac.find(isim);
+		
+		System.out.println("Isim:");
+		String ad=scan.next();
+		System.out.println("Adres:");
+		String adres=scan.next();
+		System.out.println("Tel:");
+		String tel=scan.next();
+		System.out.println("E-posta:");
+		String eposta=scan.next();
+		System.out.println("Uyruk:");
+		String uyruk=scan.next();
+		System.out.println("Dogum yeri:");
+		String yer=scan.next();
+		System.out.println("Dogum tarihi:");
+		String tarih=scan.next();
+		System.out.println("Medeni durumu:");
+		String medeni=scan.next();
+		System.out.println("Cinsiyet(e/k):");
+		String cinsiyet=scan.next();
+		System.out.println("Ogrenci(e/h):");
+		String ogrenci=scan.next();
+		System.out.println("Bilgiler:");
+		//TODO while koy
+		System.out.println("Satin alinanlar:");
+		//TODO while koy
+		
+		if(ad!=null)
+			birKisi.setAd(ad);
+		if(adres!=null)
+			birKisi.setAdres(adres);
+		if(cinsiyet!=null)
+			birKisi.setCinsiyet(cinsiyet);
+		if(yer!=null)
+			birKisi.setDogum_yeri(yer);
+		if(eposta!=null)
+			birKisi.setE_posta(eposta);
+		if(medeni!=null)
+			birKisi.setMedeni_durum(medeni);
+		if(ogrenci!=null)
+			birKisi.setOgrenci(ogrenci);
+		if(tarih!=null)
+			birKisi.setTarih(tarih);
+		if(tel!=null)
+			birKisi.setTelefon(tel);
+		if(uyruk!=null)
+			birKisi.setUyruk(uyruk);
+		
+		if(ad!=null)
+		{
+			agac.sil(isim);
+			agac.ekle(birKisi);
+		}
+		scan.close();
 	}
 
-	public static void init(tree kisiAgaci, PriorityQueue<yeniBilgi> heap){
+	public static void init(tree kisiAgaci, Heap heap, Hashtable<Float,yeniBilgi> hashing){
 		try {
-			FileReader fr = new FileReader("kullanıcılar.txt");
+			FileReader fr = new FileReader("kullanicilar.txt");
 			BufferedReader br= new BufferedReader(fr);
 
 			String satir;
 			ArrayList<String> kullanicilar = new ArrayList<String>();
 			//TODO initialize
 
-			while((satir = br.readLine())!=null){kullanicilar.add(satir);}//kullanicilari ayır
+			while((satir = br.readLine())!=null){kullanicilar.add(satir);}//kullanicilari ayir
 
 
 			for (int i = 0; i < kullanicilar.size()-1; i++) {
-				String[] tmp = kullanicilar.get(i).split("#");//bilgileri ayıkla
+				String[] tmp = kullanicilar.get(i).split("#");//bilgileri ayikla
 
-				kisiNode eklenen = new kisiNode();//eklenecek kişi
+				kisiNode eklenen = new kisiNode();//eklenecek kisi
 				eklenen.setAd(tmp[0]);
 				eklenen.setAdres(tmp[1]);
 				eklenen.setTelefon(tmp[2]);
@@ -45,10 +188,10 @@ public class Emlak {
 				eklenen.setCinsiyet(tmp[8]);
 				eklenen.setOgrenci(tmp[9]);
 
-				String[] bilgi = tmp[tmp.length].split(">>");//eski bilgileri ayır
-				if(bilgi[0].compareTo("0")!=0)//eski bilgilerde 1'den fazla değer varsa
+				String[] bilgi = tmp[tmp.length].split(">>");//eski bilgileri ayir
+				if(bilgi[0].compareTo("0")!=0)//eski bilgilerde 1'den fazla deger varsa
 					for (int j = 1; j < Integer.parseInt(bilgi[0])+1; j++) {
-						String[] adres = bilgi[j].split("_") ;//Bilgileri ayıkla
+						String[] adres = bilgi[j].split("_") ;//Bilgileri ayikla
 						eskiBilgiler temp = new eskiBilgiler();//bilgileri ekle
 						temp.setKira(adres[0]);
 						temp.setIl(adres[1]);
@@ -57,7 +200,7 @@ public class Emlak {
 						temp.setAlan(Float.parseFloat(adres[4]));
 						temp.setYil(adres[5]);
 
-						eklenen.eskiBilgiler.add(temp);//İlgili nesneye ekle
+						eklenen.eskiBilgiler.add(temp);//ilgili nesneye ekle
 					}
 				kisiAgaci.ekle(eklenen);// kisileri agaca ekle
 			}
@@ -82,7 +225,7 @@ public class Emlak {
 				String[] detay = string.split("#");//Bilgileri ayikla
 				yeniBilgi temp1 = new yeniBilgi();//eklenecekler
 				
-				temp1.setIlanno(Float.parseFloat(detay[0]));//Nesne oluşturma destani
+				temp1.setIlanno(Float.parseFloat(detay[0]));//Nesne olusturma destani
 				temp1.setSatildi(detay[1]);
 				temp1.setIl(detay[2]);
 				temp1.setIlce(detay[3]);
@@ -104,15 +247,16 @@ public class Emlak {
 				ArrayList<String> icdonanim = new ArrayList<String>();
 				
 				for (String string2 : ic) {
-					icdonanim.add(string2);//İc donanimi tutan arraylist.
+					icdonanim.add(string2);//ic donanimi tutan arraylist.
 				}
 				temp1.icdonanim = icdonanim;
-				
+				hashing.put(temp1.getIlanno(), temp1);
 				//TODO çati veya zemin kat kontrolü yapilacak!
-				heap.add(temp1);//Oncelik kuyruguna ekleme
+				heap.ekle(temp1);//Oncelik kuyruguna ekleme
 			}
 			
-			
+			fr1.close();
+			br1.close();
 
 		}catch (Exception e){
 			e.printStackTrace();
@@ -120,8 +264,29 @@ public class Emlak {
 	}
 
 
-	public static void menu(){
-		System.out.println("1.Satın alma işlemleri");
-		System.out.println("2.Satis islemleri");
+	public static void anamenu(){
+		System.out.println("1.Satilik Konut Arayan Kisilerin Kullanacagi Bolum");
+		System.out.println("2.Emlak Sahiplerinin Kullanacagi Bolum");
+		System.out.println("3.Cikis");	
+	}
+	
+	public static void aramenu1()
+	{
+		System.out.println("1.Sisteme kayit");
+		System.out.println("2.Sistemdeki bilgileri guncelleme");
+		System.out.println("3.Sistemden cikis");
+		System.out.println("4.Verilen bir ilcedeki verilen fiyat araligindaki tum konutlarin listelenmesi");
+		System.out.println("5.Verilen bir ildeki arakatlarda ogrenciye uygun tum konutlarin listelenmesi");
+		System.out.println("6.Hash Table dolasilarak uygun olana gelindiginde satin alinmasi -tanimli kisiler alabilir");
+		System.out.println("7.Ilan numarasi ile ev alinmasi");
+		System.out.println("8.En iyi n adet konutun alinmasi");
+		System.out.println("9.ogrenciye uygun konutlarin, ilçe bazinda ortalama fiyatlarinin bulunmasi");
+	}
+	
+	public static void aramenu2()
+	{
+		System.out.println("1.Sisteme kayit(yeni satilik konut ilan verme)");
+		System.out.println("2.Sistemdeki ilan bilgileri guncelleme(numarasina gore)");
+		System.out.println("3.Sistemde kayitli ilan bilgisini silme(numarasina gore)");
 	}
 }

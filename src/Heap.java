@@ -23,13 +23,14 @@ public class Heap {
 			kuyruk.add(biryeniBilgi);
 		else
 		{
-			for(int i=0; i<kuyruk.size();i++)
+			int i;
+			for(i=0; i<kuyruk.size();i++)
 			{
 				j=(float)kuyruk.get(i).getFiyat()/kuyruk.get(i).getAlan();
 				if(k<j)
 					break;
-				kuyruk.add(i,biryeniBilgi);
 			}
+			kuyruk.add(i,biryeniBilgi);
 		}
 	}
 }
