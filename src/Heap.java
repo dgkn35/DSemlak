@@ -33,4 +33,8 @@ public class Heap {
 			kuyruk.add(i,biryeniBilgi);
 		}
 	}
+	
+	public int getSize(){
+		return kuyruk.size();
+	}
 }

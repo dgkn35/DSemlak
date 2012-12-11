@@ -7,6 +7,13 @@ public class yeniBilgi {
 	private float ilanno, fiyat, alan, yil, kat, oda_sayisi, banyo, bina_kat;
 	public ArrayList<String> icdonanim;
 	
+	public void yazdir()
+	{
+		System.out.println(ilanno + " " + satildi + " " + il + " " + ilce + " " + fiyat + " " + yapi_tipi );
+		//TODO yazdir duzenlenecek
+		System.out.println(alan + " " +  yil);
+	}
+	
 	public yeniBilgi(){// Constructor
 		icdonanim = new ArrayList<String>();
 	}
