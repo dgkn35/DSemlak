@@ -16,8 +16,112 @@ public class Emlak {
 		init(kisiAgaci, heap, hashing);
 
 	}
-
-	public static void hashingDolasIlce(Hashtable<String,yeniBilgi> hashing)//ilan no
+	
+	public static void emlakSil(Hashtable<Float,yeniBilgi> hashing, Heap heap)
+	{
+		yeniBilgi birBilgi;
+		Scanner scan = new Scanner(System.in);
+		System.out.println("Silmek istediginiz konutun ilan numarasini giriniz:");
+		float ilanno=scan.nextFloat();
+		hashing.remove(ilanno);
+		ArrayList<yeniBilgi> dizi = new ArrayList<>();
+		for(int i=0;i<heap.getSize();i++)
+		{
+			birBilgi=heap.sil();
+			if(birBilgi.getIlanno()!=ilanno)
+				dizi.add(birBilgi);
+		}
+		
+		for (int i = 0; i < dizi.size();i++)
+			heap.ekle(dizi.get(i));
+		
+		scan.close();
+	}
+	
+	public static void emlakKayit(Hashtable<Float,yeniBilgi> hashing, Heap heap)
+	{
+		Scanner scan = new Scanner(System.in);
+		System.out.println("Konutun ilan numarasini giriniz:");
+		float ilanno = scan.nextFloat();
+		System.out.println("Konutun bulundugu ili giriniz:");
+		String il=scan.next();
+		System.out.println("Konutun bulundugu ilceyi giriniz:");
+		String ilce=scan.next();
+		System.out.println("Konutun fiyatini giriniz:");
+		float fiyat=scan.nextFloat();
+		System.out.println("Konutun yapi tipini(D/M/V) giriniz:");
+		String yapi_tipi=scan.next();
+		System.out.println("Konutun alanini giriniz:");
+		float alan=scan.nextFloat();
+		System.out.println("Konutun yapim yilini giriniz:");
+		float yil=scan.nextFloat();
+		System.out.println("Konutun durumunu(I/S) giriniz:");
+		String durum=scan.next();
+		System.out.println("Konutun bulundugu kati giriniz:");
+		float kat=scan.nextFloat();
+		System.out.println("Konutun oda sayisini giriniz:");
+		float oda=scan.nextFloat();
+		System.out.println("Konutun banyo sayisini giriniz:");
+		float banyo=scan.nextFloat();
+		System.out.println("Konutta balkon olup olmadigini giriniz(E/H):");
+		String balkon=scan.next();
+		System.out.println("Konutun kullanim durumunu(K/M/B) giriniz:");
+		String kullanim_durum=scan.next();
+		System.out.println("Bina kat sayisini giriniz:");
+		float bina_kat=scan.nextFloat();
+		System.out.println("Bahce olup olmadigini giriniz(E/H):");
+		String bahce=scan.next();
+		System.out.println("Konutun ogrenciye uygun olup olmadigini giriniz(E/H):");
+		String ogrenci=scan.next();
+		
+		//TODO ic donanim ve aciklama
+		
+		yeniBilgi birBilgi = new yeniBilgi();
+		
+		birBilgi.setAlan(alan);
+		birBilgi.setBahce(bahce);
+		birBilgi.setBalkon(balkon);
+		birBilgi.setBanyo(banyo);
+		birBilgi.setBina_kat(bina_kat);
+		birBilgi.setFiyat(fiyat);
+		birBilgi.setIl(il);
+		birBilgi.setIlanno(ilanno);
+		birBilgi.setIlce(ilce);
+		birBilgi.setKat(kat);
+		birBilgi.setKullanim_durumu(kullanim_durum);
+		birBilgi.setOda_sayisi(oda);
+		birBilgi.setSatildi("H");
+		birBilgi.setUygun(ogrenci);
+		birBilgi.setYapi_durum(durum);
+		birBilgi.setYapi_tipi(yapi_tipi);
+		birBilgi.setYil(yil);
+		
+		hashing.put(birBilgi.getIlanno(), birBilgi);
+		heap.ekle(birBilgi);
+		
+		scan.close();
+	}
+	
+	public static void ogrenciFiyatOrtalama(Hashtable<Float,yeniBilgi> hashing)
+	{
+		float ortalama=0, toplam=0, sayac=0;
+		Scanner scan = new Scanner(System.in);
+		System.out.println("Lutfen ilce adi giriniz:");
+		String ilce=scan.next();
+		for (yeniBilgi birBilgi : hashing.values())
+		{
+			if(birBilgi.getUygun()=="E" && birBilgi.getIlce()==ilce)
+			{
+				sayac++;
+				toplam=(float)toplam+birBilgi.getFiyat();
+			}
+		}
+		ortalama=(float)toplam/sayac;
+		System.out.println("Ortalama fiyat=" + ortalama);
+		scan.close();
+	}
+	
+	public static void hashingDolasIlce(Hashtable<Float,yeniBilgi> hashing)//ilan no
 	{
 		Scanner scan = new Scanner(System.in);
 		System.out.println("Lutfen ilce bilgisini giriniz:");
@@ -34,7 +138,7 @@ public class Emlak {
 		scan.close();
 	}
 
-	public static void hashingDolasIl(Hashtable<String,yeniBilgi> hashing)//ilan no
+	public static void hashingDolasIl(Hashtable<Float,yeniBilgi> hashing)//ilan no
 	{
 		Scanner scan = new Scanner(System.in);
 		System.out.println("Lutfen il bilgisini giriniz:");
@@ -46,7 +150,7 @@ public class Emlak {
 		scan.close();
 	}
 
-	public static void hashingDolasSat(Hashtable<String, yeniBilgi> hashing, Heap heap, tree agac)
+	public static void hashingDolasSat(Hashtable<Float, yeniBilgi> hashing, Heap heap, tree agac)
 	{
 		kisiNode birKisi;
 		Scanner scan = new Scanner(System.in);
