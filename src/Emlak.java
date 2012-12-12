@@ -11,14 +11,14 @@ public class Emlak {
 	public static void main(String[] args) {
 		tree kisiAgaci = new tree();
 		Heap heap = new Heap();
-		Hashtable<Float, yeniBilgi> hashing = new Hashtable<>();
+		Hashtable<Float, yeniBilgi> hashing = new Hashtable<Float,yeniBilgi>();
 
 		init(kisiAgaci, heap, hashing);
-		
+
 		anamenu(kisiAgaci, heap, hashing);
 
 	}
-	
+
 	public static void sat(Hashtable<Float, yeniBilgi> hashing,tree agac,Heap heap) {
 		kisiNode birKisi;
 		yeniBilgi birBilgi;
@@ -31,19 +31,19 @@ public class Emlak {
 		birBilgi = hashing.remove(ilanno);
 		birBilgi.setSatildi("E");
 		birKisi.satinAlinanlar.add(birBilgi);
-		
-		scan.close();
+
+
 	}
-	
+
 	public static void emlakGuncelle(Hashtable<Float,yeniBilgi> hashing, Heap heap)
 	{
 		Scanner scan = new Scanner(System.in);
 		System.out.println("Guncellemek istediginiz ilanin numarasini giriniz:");
 		float ilanno=scan.nextFloat();
-		
+
 		String il, ilce, yapi_tipi, durum, balkon, kullanim_durum, bahce, ogrenci;
 		float fiyat, alan, yil, kat, oda, banyo, bina_kat;
-		
+
 		for (yeniBilgi birBilgi : hashing.values())
 		{
 			if(birBilgi.getIlanno()==ilanno)
@@ -80,9 +80,9 @@ public class Emlak {
 				bahce=scan.next();
 				System.out.println("Konutun ogrenciye uygun olup olmadigini giriniz(E/H):");
 				ogrenci=scan.next();
-				
+
 				//TODO ic donanim ve aciklama
-				
+
 				if(il!=null)
 					birBilgi.setIl(il);
 				if(ilce!=null)
@@ -117,18 +117,18 @@ public class Emlak {
 			break;
 		}
 		yeniBilgi ikiBilgi;
-		ArrayList<yeniBilgi> dizi = new ArrayList<>();
+		ArrayList<yeniBilgi> dizi = new ArrayList<yeniBilgi>();
 		for(int i=0;i<heap.getSize();i++)
 		{
 			ikiBilgi=heap.sil();
 			dizi.add(ikiBilgi);
 		}
-		
+
 		for(int i=0;i<dizi.size();i++)
 			heap.ekle(dizi.get(i));
-		scan.close();
+
 	}
-	
+
 	public static void emlakSil(Hashtable<Float,yeniBilgi> hashing, Heap heap)
 	{
 		yeniBilgi birBilgi;
@@ -136,20 +136,20 @@ public class Emlak {
 		System.out.println("Silmek istediginiz konutun ilan numarasini giriniz:");
 		float ilanno=scan.nextFloat();
 		hashing.remove(ilanno);
-		ArrayList<yeniBilgi> dizi = new ArrayList<>();
+		ArrayList<yeniBilgi> dizi = new ArrayList<yeniBilgi>();
 		for(int i=0;i<heap.getSize();i++)
 		{
 			birBilgi=heap.sil();
 			if(birBilgi.getIlanno()!=ilanno)
 				dizi.add(birBilgi);
 		}
-		
+
 		for (int i = 0; i < dizi.size();i++)
 			heap.ekle(dizi.get(i));
-		
-		scan.close();
+
+
 	}
-	
+
 	public static void emlakKayit(Hashtable<Float,yeniBilgi> hashing, Heap heap)
 	{
 		Scanner scan = new Scanner(System.in);
@@ -185,11 +185,11 @@ public class Emlak {
 		String bahce=scan.next();
 		System.out.println("Konutun ogrenciye uygun olup olmadigini giriniz(E/H):");
 		String ogrenci=scan.next();
-		
+
 		//TODO ic donanim ve aciklama
-		
+
 		yeniBilgi birBilgi = new yeniBilgi();
-		
+
 		birBilgi.setAlan(alan);
 		birBilgi.setBahce(bahce);
 		birBilgi.setBalkon(balkon);
@@ -207,13 +207,13 @@ public class Emlak {
 		birBilgi.setYapi_durum(durum);
 		birBilgi.setYapi_tipi(yapi_tipi);
 		birBilgi.setYil(yil);
-		
+
 		hashing.put(birBilgi.getIlanno(), birBilgi);
 		heap.ekle(birBilgi);
-		
-		scan.close();
+
+
 	}
-	
+
 	public static void ogrenciFiyatOrtalama(Hashtable<Float,yeniBilgi> hashing)
 	{
 		float ortalama=0, toplam=0, sayac=0;
@@ -230,9 +230,9 @@ public class Emlak {
 		}
 		ortalama=(float)toplam/sayac;
 		System.out.println("Ortalama fiyat=" + ortalama);
-		scan.close();
+
 	}
-	
+
 	public static void hashingDolasIlce(Hashtable<Float,yeniBilgi> hashing)//ilan no
 	{
 		Scanner scan = new Scanner(System.in);
@@ -247,7 +247,7 @@ public class Emlak {
 			if(birBilgi.getIlce()==ilce && birBilgi.getFiyat()<ustDeger && birBilgi.getFiyat()>altDeger)
 				birBilgi.yazdir();
 		}
-		scan.close();
+
 	}
 
 	public static void hashingDolasIl(Hashtable<Float,yeniBilgi> hashing)//ilan no
@@ -259,30 +259,32 @@ public class Emlak {
 			if(birBilgi.getIl()==il && birBilgi.getKat()!=0 && birBilgi.getKat()!=birBilgi.getBina_kat() && birBilgi.getUygun()=="E")
 				birBilgi.yazdir();
 		}
-		scan.close();
+
 	}
 
 	public static void hashingDolasSat(Hashtable<Float, yeniBilgi> hashing, Heap heap, tree agac)
 	{
 		kisiNode birKisi;
+		
 		Scanner scan = new Scanner(System.in);
 		System.out.println("Lutfen isminizi giriniz");
 		String isim=scan.nextLine();
 		birKisi=agac.find(isim);
 		String devam;
-		for (yeniBilgi birBilgi : hashing.values()) {
-			birBilgi.yazdir();
-			System.out.println("Satin almak istermisiniz? Satin almak icin e, devam etmek icin herhangi bir tusa basin");
-			devam=scan.next();
-			if(devam=="e" || devam=="E")
-			{
-				birKisi.satinAlinanlar.add(birBilgi);
-				birBilgi.setSatildi("E");
-				hashing.remove(birBilgi.getIlanno());
+		if(birKisi != null)
+			for (yeniBilgi birBilgi : hashing.values()) {
+				birBilgi.yazdir();
+				System.out.println("Satin almak istermisiniz? Satin almak icin e, devam etmek icin herhangi bir tusa basin");
+				devam=scan.next();
+				if(devam=="e" || devam=="E")
+				{
+					System.out.println("Daire satin alindi.");
+					birKisi.satinAlinanlar.add(birBilgi);
+					birBilgi.setSatildi("E");
+					hashing.remove(birBilgi.getIlanno());
+				}
 			}
-			break;
-		}
-		scan.close();
+
 	}
 
 	public static void yatirim(tree agac, Heap heap)
@@ -297,7 +299,7 @@ public class Emlak {
 				dizi.add(birBilgi);
 			}
 		}
-		
+
 		for (int i = 0; i < dizi.size();i++){
 			heap.ekle(dizi.get(i));
 		}
@@ -313,7 +315,7 @@ public class Emlak {
 			birKisi.satinAlinanlar.add(birBilgi);
 			birBilgi.setSatildi("E");
 		}
-		scan.close();
+
 	}
 
 	public static void kisiKayit(tree kisiAgaci){
@@ -357,7 +359,7 @@ public class Emlak {
 
 		kisiAgaci.ekle(birKisi);
 
-		scan.close();
+
 
 	}
 
@@ -374,7 +376,7 @@ public class Emlak {
 			else
 				System.out.println("Boyle bir kisi bulunmamaktadir !!!!1111!!!!");
 		}
-		scan.close();
+
 	}
 
 	public static void guncelle(tree agac)
@@ -384,7 +386,8 @@ public class Emlak {
 		System.out.println("Guncellemek istediginiz kisinin ismini giriniz:");
 		String isim=scan.next();
 		birKisi=agac.find(isim);
-
+		
+		System.out.println("Değiştirmek istemediğiniz degerler yerine q harfi giriniz.");
 		System.out.println("Isim:");
 		String ad=scan.next();
 		System.out.println("Adres:");
@@ -410,33 +413,32 @@ public class Emlak {
 		System.out.println("Satin alinanlar:");
 		//TODO while koy
 
-		if(ad!=null)
+		if(ad.compareTo("q")!=0)
 			birKisi.setAd(ad);
-		if(adres!=null)
+		if(adres.compareTo("q")!=0)
 			birKisi.setAdres(adres);
-		if(cinsiyet!=null)
+		if(cinsiyet.compareTo("q")!=0)
 			birKisi.setCinsiyet(cinsiyet);
-		if(yer!=null)
+		if(yer.compareTo("q")!=0)
 			birKisi.setDogum_yeri(yer);
-		if(eposta!=null)
+		if(eposta.compareTo("q")!=0)
 			birKisi.setE_posta(eposta);
-		if(medeni!=null)
+		if(medeni.compareTo("q")!=0)
 			birKisi.setMedeni_durum(medeni);
-		if(ogrenci!=null)
+		if(ogrenci.compareTo("q")!=0)
 			birKisi.setOgrenci(ogrenci);
-		if(tarih!=null)
+		if(tarih.compareTo("q")!=0)
 			birKisi.setTarih(tarih);
-		if(tel!=null)
+		if(tel.compareTo("q")!=0)
 			birKisi.setTelefon(tel);
-		if(uyruk!=null)
+		if(uyruk.compareTo("q")!=0)
 			birKisi.setUyruk(uyruk);
 
-		if(ad!=null)
+		if(ad.compareTo("q")!=0)
 		{
 			agac.sil(isim);
 			agac.ekle(birKisi);
 		}
-		scan.close();
 	}
 
 	public static void init(tree kisiAgaci, Heap heap, Hashtable<Float,yeniBilgi> hashing){
@@ -516,10 +518,11 @@ public class Emlak {
 				temp1.setOda_sayisi(Float.parseFloat(detay[10]));
 				temp1.setBanyo(Float.parseFloat(detay[11]));
 				temp1.setBalkon(detay[12]);
-				temp1.setBina_kat(Float.parseFloat(detay[13]));
-				temp1.setBahce(detay[14]);
-				temp1.setUygun(detay[16]);
-				temp1.setAciklama(detay[17]);
+				temp1.setKullanim_durumu(detay[13]);
+				temp1.setBina_kat(Float.parseFloat(detay[14]));
+				temp1.setBahce(detay[15]);
+				temp1.setUygun(detay[17]);
+				temp1.setAciklama(detay[18]);
 
 				String[] ic = detay[15].split("_");
 				ArrayList<String> icdonanim = new ArrayList<String>();
@@ -546,31 +549,31 @@ public class Emlak {
 		int secim;
 		Scanner scan = new Scanner(System.in);
 		do{
-			
+
 			System.out.println("1.Satilik Konut Arayan Kisilerin Kullanacagi Bolum");
 			System.out.println("2.Emlak Sahiplerinin Kullanacagi Bolum");
 			System.out.println("3.Cikis");
 			secim=scan.nextInt();
-			scan.close();
-			
+
+
 			switch (secim) {
 			case 1:
-				
+
 				aramenu1(agac,heap,hash);
-				
+
 				break;
 			case 2:
-				
+
 				aramenu2(agac,heap,hash);
-				
+
 				break;
 			default:
 				break;
 			}
-			
+
 		}while(secim !=3);
-		
-		
+
+
 	}
 
 	public static void aramenu1(tree agac,Heap heap, Hashtable<Float, yeniBilgi> hash)
@@ -585,51 +588,51 @@ public class Emlak {
 		System.out.println("7.Ilan numarasi ile ev alinmasi");
 		System.out.println("8.En iyi n adet konutun alinmasi");
 		System.out.println("9.ogrenciye uygun konutlarin, ilçe bazinda ortalama fiyatlarinin bulunmasi");
-		Scanner scan1 = new Scanner(System.in);
-		secim=scan1.nextInt();
-		scan1.close();
+		Scanner scan = new Scanner(System.in);
+		secim=scan.nextInt();
+
 		switch (secim) {
 		case 1:
-			
+
 			kisiKayit(agac);
 			break;
 		case 2:
-			
+
 			guncelle(agac);
 			break;
 		case 3:
-			
+
 			sil(agac);
 			break;
 		case 4:
-			
+
 			hashingDolasIlce(hash);
 			break;
 		case 5:
-			
+
 			hashingDolasIl(hash);
 			break;
 		case 6:
-			
+
 			hashingDolasSat(hash, heap, agac);
 			break;
 		case 7:
-			
+
 			sat(hash, agac, heap);
 			break;
 		case 8:
-			
+
 			yatirim(agac, heap);
 			break;
 		case 9:
-			
+
 			ogrenciFiyatOrtalama(hash);
 			break;
 
 		default:
 			break;
 		}
-		
+
 	}
 
 	public static void aramenu2(tree agac,Heap heap, Hashtable<Float, yeniBilgi> hash)
@@ -639,23 +642,22 @@ public class Emlak {
 		System.out.println("3.Sistemde kayitli ilan bilgisini silme(numarasina gore)");
 		Scanner scan = new Scanner(System.in);
 		int secim=scan.nextInt();
-		scan.close();
 		switch (secim) {
 		case 1:
-			
+
 			emlakKayit(hash, heap);
 			break;
 		case 2:
-			
+
 			emlakGuncelle(hash, heap);
 			break;
 		case 3:
-			
+
 			emlakSil(hash, heap);
 			break;
 		default:
 			break;
 		}
-		
+
 	}
 }
