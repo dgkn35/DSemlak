@@ -8,7 +8,7 @@ public class kisiNode {
 	public kisiNode leftchild;
 	public ArrayList<eskiBilgiler> eskiBilgiler;
 	public ArrayList<yeniBilgi> satinAlinanlar;
-	public ArrayList<icDonanim> donanim;
+	public ArrayList<String> donanim;
 	
 	public kisiNode()
 	{
