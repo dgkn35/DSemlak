@@ -12,7 +12,7 @@ public class tree {
 	public kisiNode find(String isim)//Arama
 	{
 		kisiNode current=root;
-		while(current.getAd()!=isim)
+		while(current.getAd().compareTo(isim)!=0)
 		{
 			
 			if(isim.compareTo(current.getAd())<0)
@@ -28,6 +28,20 @@ public class tree {
 		
 		return current;
 	}
+
+	/*public void kisiBul(String key){
+		kisiNode current=root;
+		while(key!=current.getAd()){
+			if(key.compareTo(current.getAd())<0)
+				current=current.leftchild;
+			else
+				if(key.compareTo(current.getAd())>0)
+				current=current.rightchild;
+			if(current==null)
+				System.out.println("Aradiginiz isimde biri bulunamaistir");
+		}
+		current.display();
+		}*/
 	
 	public void ekle(kisiNode bir_node)
 	{
@@ -43,7 +57,7 @@ public class tree {
 			while (true)
             {
                 parent=current;
-                if(current.getAd().compareTo(bir_node.getAd())<0)
+                if(bir_node.getAd().compareTo(current.getAd())<0)
                 {
                 	current=current.leftchild;
                 	if(current==null)
@@ -158,14 +172,26 @@ public class tree {
 		return successor;
 	}
 
+	public void traverse(){
+		System.out.println("Preorder dolasma!!!!!!!!!!!!!!!!!!!!!!!");
+		preOrder(root);
+		System.out.println("\n\n");
+		System.out.println("Postorder dolasma!!!!!!!!!!!!!!!!!!!!!!!!!");
+		postOrder(root);
+		System.out.println("\n\n");
+		System.out.println("Inorder dolasma!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+		inOrder(root);
+		System.out.println("\n\n");
+	}
+	
 	public void preOrder(kisiNode localRoot)
 	{
 		if(localRoot!=null)
-		{
-			//display sonra yapılcak
+		{   localRoot.display();
+		System.out.println("\n\n");
 			preOrder(localRoot.leftchild);
 			preOrder(localRoot.rightchild);
-			bulmaca();
+	
 		}
 	}
 
@@ -173,10 +199,12 @@ public class tree {
 	{
 		if(localRoot!=null)
 		{
+	       
 			inOrder(localRoot.leftchild);
-			//display sonra yapılcak
+			localRoot.display();
+			System.out.println("\n\n");
 			inOrder(localRoot.rightchild);
-			bulmaca();
+			
 		}
 	}
 
@@ -186,8 +214,9 @@ public class tree {
 		{
 			postOrder(localRoot.leftchild);
 			postOrder(localRoot.rightchild);
-			//display sonra yapılcak
-			bulmaca();
+			localRoot.display();
+			System.out.println("\n\n");
+			
 		}
 	}
 

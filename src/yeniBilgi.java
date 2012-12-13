@@ -11,9 +11,13 @@ public class yeniBilgi {
 	{
 		System.out.println(ilanno + " " + satildi + " " + il + " " + ilce + " " + fiyat + " " + yapi_tipi );
 		//TODO yazdir duzenlenecek
-		System.out.println(alan + " " +  yil);
+		System.out.println(alan + " " +  yil+ "  " + yapi_durum+ " " + kullanim_durumu+ "  " + fiyat+ " " + kat);
+		System.out.println(oda_sayisi + " " +  banyo+ "  " +bina_kat+ " " + satildi+ "  " +balkon+ " " + bahce+ " "+ uygun);
+		
+		for(int i=0;i<icdonanim.size();i++){
+			System.out.println(icdonanim.get(i));
+		}
 	}
-	
 	public yeniBilgi(){// Constructor
 		icdonanim = new ArrayList<String>();
 	}

@@ -95,6 +95,29 @@ public class kisiNode {
 	public void setTelefon(String tmp) {
 		this.telefon = tmp;
 	}
+	
+	public void display(){
+		System.out.println(ad);
+		System.out.println(adres);
+		System.out.println(e_posta);
+		System.out.println(uyruk);
+		System.out.println(dogum_yeri);
+		System.out.println(medeni_durum);
+		System.out.println(cinsiyet);
+		System.out.println(tarih);
+		System.out.println(telefon);
+		System.out.println(ogrenci);
+		for(int i=0;i<eskiBilgiler.size();i++){
+			eskiBilgiler.get(i).eskiyaz();
+		}
+		for(int k=0;k<satinAlinanlar.size();k++){
+			satinAlinanlar.get(k).yazdir();
+		}
+		
+		//for(int l=0;l<donanim.size();l++){
+			//System.out.println(donanim.get(l));
+		//}
+	}
 
 	
 }

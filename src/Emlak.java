@@ -14,6 +14,14 @@ public class Emlak {
 		Hashtable<Float, yeniBilgi> hashing = new Hashtable<Float,yeniBilgi>();
 
 		init(kisiAgaci, heap, hashing);
+		
+		//kisiNode xxx=new kisiNode();
+		//xxx=kisiAgaci.find("Derya Deniz");
+		//if(xxx==null)
+		//	System.out.println("Aradiginiz isimde biri bulunamaistir");
+		//else
+		//xxx.display();
+		
 
 		anamenu(kisiAgaci, heap, hashing);
 
@@ -25,7 +33,7 @@ public class Emlak {
 		Scanner scan = new Scanner(System.in);
 		System.out.println("Ev alacak kisinin adini giriniz:");
 		String isim=scan.next();
-		System.out.println("Ä°lan numarasi gini:");
+		System.out.println("Ilan numarasi gini:");
 		float ilanno=scan.nextFloat();
 		birKisi=agac.find(isim);
 		birBilgi = hashing.remove(ilanno);
@@ -443,7 +451,7 @@ public class Emlak {
 
 	public static void init(tree kisiAgaci, Heap heap, Hashtable<Float,yeniBilgi> hashing){
 		try {
-			FileReader fr = new FileReader("kullanÄ±cÄ±lar.txt");
+			FileReader fr = new FileReader("kullanýcýlar.txt");
 			BufferedReader br= new BufferedReader(fr);
 
 			String satir;
@@ -547,12 +555,15 @@ public class Emlak {
 
 	public static void anamenu(tree agac,Heap heap, Hashtable<Float, yeniBilgi> hash){
 		int secim;
+		String secim2;
 		Scanner scan = new Scanner(System.in);
+		Scanner scan2 = new Scanner(System.in);
 		do{
 
 			System.out.println("1.Satilik Konut Arayan Kisilerin Kullanacagi Bolum");
 			System.out.println("2.Emlak Sahiplerinin Kullanacagi Bolum");
-			System.out.println("3.Cikis");
+			System.out.println("3.Agac slemleri");
+			System.out.println("4.Cikis");
 			secim=scan.nextInt();
 
 
@@ -566,12 +577,20 @@ public class Emlak {
 
 				aramenu2(agac,heap,hash);
 
+			case 3:
+				//System.out.println("Bulmak istediginiz kisinin adini giriniz");
+				//secim2=scan2.next();
+				//agac.kisiBul(secim2);
+				System.out.println("\n\n");
+				agac.traverse();
+				
+				
 				break;
 			default:
 				break;
 			}
 
-		}while(secim !=3);
+		}while(secim !=4);
 
 
 	}

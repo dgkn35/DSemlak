@@ -39,4 +39,13 @@ public class eskiBilgiler {
 	public void setIlce(String ilce) {
 		this.ilce = ilce;
 	}
+	
+	public void eskiyaz(){
+		System.out.println(fiyat);
+		System.out.println(alan);
+		System.out.println(il);
+		System.out.println(ilce);
+		System.out.println(kira);
+		System.out.println(yil);
+	}
 }
