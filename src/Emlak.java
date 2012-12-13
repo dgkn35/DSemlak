@@ -32,7 +32,7 @@ public class Emlak {
 		yeniBilgi birBilgi;
 		Scanner scan = new Scanner(System.in);
 		System.out.println("Ev alacak kisinin adini giriniz:");
-		String isim=scan.next();
+		String isim=scan.nextLine();
 		System.out.println("Ilan numarasi gini:");
 		float ilanno=scan.nextFloat();
 		birKisi=agac.find(isim);
@@ -59,19 +59,19 @@ public class Emlak {
 				System.out.println("Konutun ilan numarasini giriniz:");
 				ilanno = scan.nextFloat();
 				System.out.println("Konutun bulundugu ili giriniz:");
-				il=scan.next();
+				il=scan.nextLine();
 				System.out.println("Konutun bulundugu ilceyi giriniz:");
-				ilce=scan.next();
+				ilce=scan.nextLine();
 				System.out.println("Konutun fiyatini giriniz(Degismeyecekse -1 giriniz):");
 				fiyat=scan.nextFloat();
 				System.out.println("Konutun yapi tipini(D/M/V) giriniz:");
-				yapi_tipi=scan.next();
+				yapi_tipi=scan.nextLine();
 				System.out.println("Konutun alanini giriniz(Degismeyecekse -1 giriniz):");
 				alan=scan.nextFloat();
 				System.out.println("Konutun yapim yilini giriniz(Degismeyecekse -1 giriniz):");
 				yil=scan.nextFloat();
 				System.out.println("Konutun durumunu(I/S) giriniz:");
-				durum=scan.next();
+				durum=scan.nextLine();
 				System.out.println("Konutun bulundugu kati giriniz(Degismeyecekse -1 giriniz):");
 				kat=scan.nextFloat();
 				System.out.println("Konutun oda sayisini giriniz(Degismeyecekse -1 giriniz):");
@@ -79,15 +79,15 @@ public class Emlak {
 				System.out.println("Konutun banyo sayisini giriniz(Degismeyecekse -1 giriniz):");
 				banyo=scan.nextFloat();
 				System.out.println("Konutta balkon olup olmadigini giriniz(E/H):");
-				balkon=scan.next();
+				balkon=scan.nextLine();
 				System.out.println("Konutun kullanim durumunu(K/M/B) giriniz:");
-				kullanim_durum=scan.next();
+				kullanim_durum=scan.nextLine();
 				System.out.println("Bina kat sayisini giriniz(Degismeyecekse -1 giriniz):");
 				bina_kat=scan.nextFloat();
 				System.out.println("Bahce olup olmadigini giriniz(E/H):");
-				bahce=scan.next();
+				bahce=scan.nextLine();
 				System.out.println("Konutun ogrenciye uygun olup olmadigini giriniz(E/H):");
-				ogrenci=scan.next();
+				ogrenci=scan.nextLine();
 
 				//TODO ic donanim ve aciklama
 
@@ -164,19 +164,19 @@ public class Emlak {
 		System.out.println("Konutun ilan numarasini giriniz:");
 		float ilanno = scan.nextFloat();
 		System.out.println("Konutun bulundugu ili giriniz:");
-		String il=scan.next();
+		String il=scan.nextLine();
 		System.out.println("Konutun bulundugu ilceyi giriniz:");
-		String ilce=scan.next();
+		String ilce=scan.nextLine();
 		System.out.println("Konutun fiyatini giriniz:");
 		float fiyat=scan.nextFloat();
 		System.out.println("Konutun yapi tipini(D/M/V) giriniz:");
-		String yapi_tipi=scan.next();
+		String yapi_tipi=scan.nextLine();
 		System.out.println("Konutun alanini giriniz:");
 		float alan=scan.nextFloat();
 		System.out.println("Konutun yapim yilini giriniz:");
 		float yil=scan.nextFloat();
 		System.out.println("Konutun durumunu(I/S) giriniz:");
-		String durum=scan.next();
+		String durum=scan.nextLine();
 		System.out.println("Konutun bulundugu kati giriniz:");
 		float kat=scan.nextFloat();
 		System.out.println("Konutun oda sayisini giriniz:");
@@ -184,15 +184,15 @@ public class Emlak {
 		System.out.println("Konutun banyo sayisini giriniz:");
 		float banyo=scan.nextFloat();
 		System.out.println("Konutta balkon olup olmadigini giriniz(E/H):");
-		String balkon=scan.next();
+		String balkon=scan.nextLine();
 		System.out.println("Konutun kullanim durumunu(K/M/B) giriniz:");
-		String kullanim_durum=scan.next();
+		String kullanim_durum=scan.nextLine();
 		System.out.println("Bina kat sayisini giriniz:");
 		float bina_kat=scan.nextFloat();
 		System.out.println("Bahce olup olmadigini giriniz(E/H):");
-		String bahce=scan.next();
+		String bahce=scan.nextLine();
 		System.out.println("Konutun ogrenciye uygun olup olmadigini giriniz(E/H):");
-		String ogrenci=scan.next();
+		String ogrenci=scan.nextLine();
 
 		//TODO ic donanim ve aciklama
 
@@ -227,7 +227,7 @@ public class Emlak {
 		float ortalama=0, toplam=0, sayac=0;
 		Scanner scan = new Scanner(System.in);
 		System.out.println("Lutfen ilce adi giriniz:");
-		String ilce=scan.next();
+		String ilce=scan.nextLine();
 		for (yeniBilgi birBilgi : hashing.values())
 		{
 			if(birBilgi.getUygun()=="E" && birBilgi.getIlce()==ilce)
@@ -245,9 +245,9 @@ public class Emlak {
 	{
 		Scanner scan = new Scanner(System.in);
 		System.out.println("Lutfen ilce bilgisini giriniz:");
-		String ilce=scan.next();
+		String ilce=scan.nextLine();
 		System.out.println("Lutfen fiyat araligini(a-b) giriniz:");
-		String aralik=scan.next();
+		String aralik=scan.nextLine();
 		String[] aralikDizisi=aralik.split("-");
 		float altDeger=Float.parseFloat(aralikDizisi[0]);
 		float ustDeger=Float.parseFloat(aralikDizisi[1]);
@@ -262,7 +262,7 @@ public class Emlak {
 	{
 		Scanner scan = new Scanner(System.in);
 		System.out.println("Lutfen il bilgisini giriniz:");
-		String il=scan.next();
+		String il=scan.nextLine();
 		for (yeniBilgi birBilgi : hashing.values()) {
 			if(birBilgi.getIl()==il && birBilgi.getKat()!=0 && birBilgi.getKat()!=birBilgi.getBina_kat() && birBilgi.getUygun()=="E")
 				birBilgi.yazdir();
@@ -283,7 +283,7 @@ public class Emlak {
 			for (yeniBilgi birBilgi : hashing.values()) {
 				birBilgi.yazdir();
 				System.out.println("Satin almak istermisiniz? Satin almak icin e, devam etmek icin herhangi bir tusa basin");
-				devam=scan.next();
+				devam=scan.nextLine();
 				if(devam=="e" || devam=="E")
 				{
 					System.out.println("Daire satin alindi.");
@@ -314,7 +314,7 @@ public class Emlak {
 
 		Scanner scan = new Scanner(System.in);
 		System.out.println("Yatirim yapacak kisinin adini giriniz:");
-		String isim=scan.next();
+		String isim=scan.nextLine();
 		System.out.println("Yatirim icin alinacak ev sayisi:");
 		int n=scan.nextInt();
 		birKisi=agac.find(isim);
@@ -330,25 +330,25 @@ public class Emlak {
 		kisiNode birKisi = new kisiNode();
 		Scanner scan = new Scanner(System.in);
 		System.out.println("Isim:");
-		String ad=scan.next();
+		String ad=scan.nextLine();
 		System.out.println("Adres:");
-		String adres=scan.next();
+		String adres=scan.nextLine();
 		System.out.println("Tel:");
-		String tel=scan.next();
+		String tel=scan.nextLine();
 		System.out.println("E-posta:");
-		String eposta=scan.next();
+		String eposta=scan.nextLine();
 		System.out.println("Uyruk:");
-		String uyruk=scan.next();
+		String uyruk=scan.nextLine();
 		System.out.println("Dogum yeri:");
-		String yer=scan.next();
+		String yer=scan.nextLine();
 		System.out.println("Dogum tarihi:");
-		String tarih=scan.next();
+		String tarih=scan.nextLine();
 		System.out.println("Medeni durumu:");
-		String medeni=scan.next();
+		String medeni=scan.nextLine();
 		System.out.println("Cinsiyet(e/k):");
-		String cinsiyet=scan.next();
+		String cinsiyet=scan.nextLine();
 		System.out.println("Ogrenci(e/h):");
-		String ogrenci=scan.next();
+		String ogrenci=scan.nextLine();
 		System.out.println("Bilgiler:");
 		//TODO while koy
 		System.out.println("Satin alinanlar:");
@@ -375,7 +375,7 @@ public class Emlak {
 	{
 		Scanner scan = new Scanner(System.in);
 		System.out.println("Silmek istediginiz kisinin adini giriniz:");
-		String isim=scan.next();
+		String isim=scan.nextLine();
 		if(isim!=null)
 		{
 			boolean flag=agac.sil(isim);
@@ -392,30 +392,30 @@ public class Emlak {
 		kisiNode birKisi;
 		Scanner scan = new Scanner(System.in);
 		System.out.println("Guncellemek istediginiz kisinin ismini giriniz:");
-		String isim=scan.next();
+		String isim=scan.nextLine();
 		birKisi=agac.find(isim);
 		
 		System.out.println("Değiştirmek istemediğiniz degerler yerine q harfi giriniz.");
 		System.out.println("Isim:");
-		String ad=scan.next();
+		String ad=scan.nextLine();
 		System.out.println("Adres:");
-		String adres=scan.next();
+		String adres=scan.nextLine();
 		System.out.println("Tel:");
-		String tel=scan.next();
+		String tel=scan.nextLine();
 		System.out.println("E-posta:");
-		String eposta=scan.next();
+		String eposta=scan.nextLine();
 		System.out.println("Uyruk:");
-		String uyruk=scan.next();
+		String uyruk=scan.nextLine();
 		System.out.println("Dogum yeri:");
-		String yer=scan.next();
+		String yer=scan.nextLine();
 		System.out.println("Dogum tarihi:");
-		String tarih=scan.next();
+		String tarih=scan.nextLine();
 		System.out.println("Medeni durumu:");
-		String medeni=scan.next();
+		String medeni=scan.nextLine();
 		System.out.println("Cinsiyet(e/k):");
-		String cinsiyet=scan.next();
+		String cinsiyet=scan.nextLine();
 		System.out.println("Ogrenci(e/h):");
-		String ogrenci=scan.next();
+		String ogrenci=scan.nextLine();
 		System.out.println("Bilgiler:");
 		//TODO while koy
 		System.out.println("Satin alinanlar:");
@@ -451,12 +451,11 @@ public class Emlak {
 
 	public static void init(tree kisiAgaci, Heap heap, Hashtable<Float,yeniBilgi> hashing){
 		try {
-			FileReader fr = new FileReader("kullan�c�lar.txt");
+			FileReader fr = new FileReader("kullanıcılar.txt");
 			BufferedReader br= new BufferedReader(fr);
 
 			String satir;
 			ArrayList<String> kullanicilar = new ArrayList<String>();
-			//TODO initialize
 
 			while((satir = br.readLine())!=null){kullanicilar.add(satir);}//kullanicilari ayir
 
@@ -555,9 +554,8 @@ public class Emlak {
 
 	public static void anamenu(tree agac,Heap heap, Hashtable<Float, yeniBilgi> hash){
 		int secim;
-		String secim2;
 		Scanner scan = new Scanner(System.in);
-		Scanner scan2 = new Scanner(System.in);
+		
 		do{
 
 			System.out.println("1.Satilik Konut Arayan Kisilerin Kullanacagi Bolum");
