@@ -252,7 +252,7 @@ public class Emlak {
 		float altDeger=Float.parseFloat(aralikDizisi[0]);
 		float ustDeger=Float.parseFloat(aralikDizisi[1]);
 		for (yeniBilgi birBilgi : hashing.values()) {
-			if(birBilgi.getIlce()==ilce && birBilgi.getFiyat()<ustDeger && birBilgi.getFiyat()>altDeger)
+			if(birBilgi.getIlce().compareTo(ilce)==0 && birBilgi.getFiyat()<ustDeger && birBilgi.getFiyat()>altDeger)
 				birBilgi.yazdir();
 		}
 
@@ -264,7 +264,7 @@ public class Emlak {
 		System.out.println("Lutfen il bilgisini giriniz:");
 		String il=scan.nextLine();
 		for (yeniBilgi birBilgi : hashing.values()) {
-			if(birBilgi.getIl()==il && birBilgi.getKat()!=0 && birBilgi.getKat()!=birBilgi.getBina_kat() && birBilgi.getUygun()=="E")
+			if(birBilgi.getIl().compareTo(il)==0 && birBilgi.getKat()!=0 && birBilgi.getKat()!=birBilgi.getBina_kat() && birBilgi.getUygun().compareTo("E")==0)
 				birBilgi.yazdir();
 		}
 
