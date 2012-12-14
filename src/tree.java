@@ -3,6 +3,7 @@ public class tree {
 	private kisiNode root;
 	public int sayac=0;
     public int duzey,duzeytop=0,derinlik;
+    public int ogr_toplam=0, ogr_ev=0;
 	
 	public tree()//Constructor
 	{
@@ -246,16 +247,29 @@ public class tree {
 		System.out.println("Ort. derinlik = " + (float)duzeytop/sayac);
 	}
 	
-	public void araBeniLutfen(kisiNode localRoot)
-	{
-		if(localRoot!=null)
-		{   
-			if(localRoot.getOgrenci().compareTo("E")==0)
-			System.out.println("\n\n");
-			preOrder(localRoot.leftchild);
-			preOrder(localRoot.rightchild);
 	
+	public void ogrEvOrt(kisiNode etkin)
+	{
+		if(etkin!=null)
+		{
+			
+			ogrEvOrt(etkin.leftchild);
+			if(etkin.getOgrenci().compareTo("E")==0){
+				ogr_ev+=etkin.satinAlinanlar.size()+etkin.eskiBilgiler.size();
+				ogr_toplam++;
+			}
+			
+			ogrEvOrt(etkin.rightchild);
+			
 		}
+	}
+	
+	public void ogrBulmaca()
+	{
+		ogr_ev=0;
+		ogr_toplam=0;
+		ogrEvOrt(root);
+		System.out.println("Ogrencilerin oturdukları ortalama ev sayisi=" + (float)ogr_ev/ogr_toplam);
 	}
 	
 }

@@ -50,7 +50,7 @@ public class Emlak {
 		{
 			if(birBilgi.getIlanno()==ilanno)
 			{
-				System.out.println("Deðiþmeyen bilgiler için q girin.");
+				System.out.println("Deï¿½iï¿½meyen bilgiler iï¿½in q girin.");
 				System.out.println("Konutun ilan numarasini giriniz:");
 				ilanno = scan.nextFloat();
 				System.out.println("Konutun bulundugu ili giriniz:");
@@ -191,13 +191,13 @@ public class Emlak {
 	
 		System.out.println("Adsl(E/H)");
 		String adsl = scan.nextLine();
-		System.out.println("Asansör(E/H)");
+		System.out.println("Asansï¿½r(E/H)");
 		String asan= scan.nextLine();
-		System.out.println("Çelik Kapý(E/H)");
+		System.out.println("ï¿½elik Kapï¿½(E/H)");
 		String celik= scan.nextLine();
-		System.out.println("Duþakabin(E/H)");
+		System.out.println("Duï¿½akabin(E/H)");
 		String kabin= scan.nextLine();
-		System.out.println("Isýcam(E/H)");
+		System.out.println("Isï¿½cam(E/H)");
 		String isi= scan.nextLine();
 		System.out.println("Kartonpiyer(E/H)");
 		String karton= scan.nextLine();
@@ -462,7 +462,7 @@ public class Emlak {
 
 	public static void init(tree kisiAgaci, Heap heap, Hashtable<Float,yeniBilgi> hashing){
 		try {
-			FileReader fr = new FileReader("kullanýcýlar.txt");
+			FileReader fr = new FileReader("kullanÄ±cÄ±lar.txt");
 			BufferedReader br= new BufferedReader(fr);
 
 			String satir;
@@ -471,7 +471,7 @@ public class Emlak {
 			while((satir = br.readLine())!=null){kullanicilar.add(satir);}//kullanicilari ayir
 
 
-			for (int i = 0; i < kullanicilar.size()-1; i++) {
+			for (int i = 0; i < kullanicilar.size(); i++) {
 				String[] tmp = kullanicilar.get(i).split("#");//bilgileri ayikla
 
 				kisiNode eklenen = new kisiNode();//eklenecek kisi
@@ -595,9 +595,9 @@ public class Emlak {
 				System.out.println("\n\n");
 				agac.traverse();
 				
+				agac.ogrBulmaca();
 				
-				
-				System.out.println("Düzey bilgileri!!!!!!1!1!!!1!!!11!!!bir!!!!");
+				System.out.println("Dï¿½zey bilgileri!!!!!!1!1!!!1!!!11!!!bir!!!!");
 				agac.bulmaca();
 				
 				
