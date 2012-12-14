@@ -15,12 +15,6 @@ public class Emlak {
 
 		init(kisiAgaci, heap, hashing);
 		
-		//kisiNode xxx=new kisiNode();
-		//xxx=kisiAgaci.find("Derya Deniz");
-		//if(xxx==null)
-		//	System.out.println("Aradiginiz isimde biri bulunamaistir");
-		//else
-		//xxx.display();
 		
 
 		anamenu(kisiAgaci, heap, hashing);
@@ -56,6 +50,7 @@ public class Emlak {
 		{
 			if(birBilgi.getIlanno()==ilanno)
 			{
+				System.out.println("Deðiþmeyen bilgiler için q girin.");
 				System.out.println("Konutun ilan numarasini giriniz:");
 				ilanno = scan.nextFloat();
 				System.out.println("Konutun bulundugu ili giriniz:");
@@ -89,21 +84,19 @@ public class Emlak {
 				System.out.println("Konutun ogrenciye uygun olup olmadigini giriniz(E/H):");
 				ogrenci=scan.nextLine();
 
-				//TODO ic donanim ve aciklama
-
-				if(il!=null)
+				if(il!="q")
 					birBilgi.setIl(il);
-				if(ilce!=null)
+				if(ilce!="q")
 					birBilgi.setIlce(ilce);
 				if(fiyat!=-1)
 					birBilgi.setFiyat(fiyat);
-				if(yapi_tipi!=null)
+				if(yapi_tipi!="q")
 					birBilgi.setYapi_tipi(yapi_tipi);
 				if(alan!=-1)
 					birBilgi.setAlan(alan);
 				if(yil!=-1)
 					birBilgi.setYil(yil);
-				if(durum!=null)
+				if(durum!="q")
 					birBilgi.setYapi_durum(durum);
 				if(kat!=-1)
 					birBilgi.setKat(bina_kat);
@@ -111,16 +104,17 @@ public class Emlak {
 					birBilgi.setOda_sayisi(oda);
 				if(banyo!=-1)
 					birBilgi.setBanyo(banyo);
-				if(balkon!=null)
+				if(balkon!="q")
 					birBilgi.setBalkon(balkon);
-				if(kullanim_durum!=null)
+				if(kullanim_durum!="q")
 					birBilgi.setKullanim_durumu(kullanim_durum);
 				if(bina_kat!=-1)
 					birBilgi.setBina_kat(bina_kat);
-				if(ogrenci!=null)
+				if(ogrenci!="q")
 					birBilgi.setUygun(ogrenci);
-				if(bahce!=null)
+				if(bahce!="q")
 					birBilgi.setBahce(bahce);
+			
 			}
 			break;
 		}
@@ -194,8 +188,24 @@ public class Emlak {
 		System.out.println("Konutun ogrenciye uygun olup olmadigini giriniz(E/H):");
 		String ogrenci=scan.nextLine();
 
-		//TODO ic donanim ve aciklama
-
+	
+		System.out.println("Adsl(E/H)");
+		String adsl = scan.nextLine();
+		System.out.println("Asansör(E/H)");
+		String asan= scan.nextLine();
+		System.out.println("Çelik Kapý(E/H)");
+		String celik= scan.nextLine();
+		System.out.println("Duþakabin(E/H)");
+		String kabin= scan.nextLine();
+		System.out.println("Isýcam(E/H)");
+		String isi= scan.nextLine();
+		System.out.println("Kartonpiyer(E/H)");
+		String karton= scan.nextLine();
+		System.out.println("Laminant Parke(E/H)");
+		String parke= scan.nextLine();
+		System.out.println("PVC(E/H)");
+		String pvc= scan.nextLine();
+		
 		yeniBilgi birBilgi = new yeniBilgi();
 
 		birBilgi.setAlan(alan);
@@ -215,7 +225,15 @@ public class Emlak {
 		birBilgi.setYapi_durum(durum);
 		birBilgi.setYapi_tipi(yapi_tipi);
 		birBilgi.setYil(yil);
-
+		
+		birBilgi.icdonanim.add(adsl);
+		birBilgi.icdonanim.add(asan);
+		birBilgi.icdonanim.add(celik);
+		birBilgi.icdonanim.add(kabin);
+		birBilgi.icdonanim.add(isi);
+		birBilgi.icdonanim.add(karton);
+		birBilgi.icdonanim.add(parke);
+		birBilgi.icdonanim.add(pvc);
 		hashing.put(birBilgi.getIlanno(), birBilgi);
 		heap.ekle(birBilgi);
 
@@ -349,11 +367,7 @@ public class Emlak {
 		String cinsiyet=scan.nextLine();
 		System.out.println("Ogrenci(e/h):");
 		String ogrenci=scan.nextLine();
-		System.out.println("Bilgiler:");
-		//TODO while koy
-		System.out.println("Satin alinanlar:");
-		//TODO while koy
-
+	
 		birKisi.setAd(ad);
 		birKisi.setAdres(adres);
 		birKisi.setCinsiyet(cinsiyet);
@@ -416,10 +430,7 @@ public class Emlak {
 		String cinsiyet=scan.nextLine();
 		System.out.println("Ogrenci(e/h):");
 		String ogrenci=scan.nextLine();
-		System.out.println("Bilgiler:");
-		//TODO while koy
-		System.out.println("Satin alinanlar:");
-		//TODO while koy
+	
 
 		if(ad.compareTo("q")!=0)
 			birKisi.setAd(ad);
@@ -451,7 +462,7 @@ public class Emlak {
 
 	public static void init(tree kisiAgaci, Heap heap, Hashtable<Float,yeniBilgi> hashing){
 		try {
-			FileReader fr = new FileReader("kullanÄ±cÄ±lar.txt");
+			FileReader fr = new FileReader("kullanýcýlar.txt");
 			BufferedReader br= new BufferedReader(fr);
 
 			String satir;
@@ -539,7 +550,8 @@ public class Emlak {
 				}
 				temp1.icdonanim = icdonanim;
 				hashing.put(temp1.getIlanno(), temp1);
-				//TODO Ã§ati veya zemin kat kontrolÃ¼ yapilacak!
+				
+				if(temp1.getBina_kat()!=temp1.getKat() && temp1.getKat()!=0)
 				heap.ekle(temp1);//Oncelik kuyruguna ekleme
 			}
 
@@ -555,7 +567,7 @@ public class Emlak {
 	public static void anamenu(tree agac,Heap heap, Hashtable<Float, yeniBilgi> hash){
 		int secim;
 		Scanner scan = new Scanner(System.in);
-		
+		Scanner scan2 = new Scanner(System.in);
 		do{
 
 			System.out.println("1.Satilik Konut Arayan Kisilerin Kullanacagi Bolum");
@@ -576,11 +588,17 @@ public class Emlak {
 				aramenu2(agac,heap,hash);
 
 			case 3:
-				//System.out.println("Bulmak istediginiz kisinin adini giriniz");
-				//secim2=scan2.next();
-				//agac.kisiBul(secim2);
+				System.out.println("Bulmak istediginiz kisinin adini giriniz");
+				String secim2=scan2.nextLine();
+				kisiNode birkKisi = agac.find(secim2);
+				birkKisi.display();
 				System.out.println("\n\n");
 				agac.traverse();
+				
+				
+				
+				System.out.println("Düzey bilgileri!!!!!!1!1!!!1!!!11!!!bir!!!!");
+				agac.bulmaca();
 				
 				
 				break;

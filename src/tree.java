@@ -188,7 +188,7 @@ public class tree {
 	{
 		if(localRoot!=null)
 		{   localRoot.display();
-		System.out.println("\n\n");
+			System.out.println("\n\n");
 			preOrder(localRoot.leftchild);
 			preOrder(localRoot.rightchild);
 	
@@ -244,6 +244,18 @@ public class tree {
 		System.out.println("Eleman sayisi = " + sayac);
 		System.out.println("Derinlik      = " + derinlik);
 		System.out.println("Ort. derinlik = " + (float)duzeytop/sayac);
+	}
+	
+	public void araBeniLutfen(kisiNode localRoot)
+	{
+		if(localRoot!=null)
+		{   
+			if(localRoot.getOgrenci().compareTo("E")==0)
+			System.out.println("\n\n");
+			preOrder(localRoot.leftchild);
+			preOrder(localRoot.rightchild);
+	
+		}
 	}
 	
 }
